@@ -21,7 +21,7 @@ DO
   IF (irDetectLeft = 0) AND (irDetectRight = 0) THEN
     GOSUB Slow_Down_Forward ' Slowdown
     GOSUB Speed_Up_Backward ' Speed up
-    GOSUB Back_Up ' Both detect obstacle
+    'GOSUB Back_Up ' Both detect obstacle
     GOSUB Slow_Down_Backward ' Slowdown
     GOSUB Turn_Left ' Back up & U-turn (left twice)
     GOSUB Turn_Left
@@ -29,14 +29,14 @@ DO
   ELSEIF (irDetectLeft = 0) THEN ' Left detects
     GOSUB Slow_Down_Forward ' Slowdown
     GOSUB Speed_Up_Backward ' Speed up
-    GOSUB Back_Up ' Both detect obstacle
+    'GOSUB Back_Up ' Both detect obstacle
     GOSUB Slow_Down_Backward ' Slowdown
     GOSUB Turn_Right
     GOSUB Speed_Up_Forward ' Speed up
   ELSEIF (irDetectRight = 0) THEN ' Right detects
     GOSUB Slow_Down_Forward ' Slowdown
     GOSUB Speed_Up_Backward ' Speed up
-    GOSUB Back_Up ' Both detect obstacle
+    'GOSUB Back_Up ' Both detect obstacle
     GOSUB Slow_Down_Backward ' Slowdown
     GOSUB Turn_Left
     GOSUB Speed_Up_Forward ' Speed up
@@ -74,7 +74,7 @@ Back_Up: ' Back up.
   RETURN
 Slow_Down_Forward: ' Slow down the boe-bot forward
   ' Ramp down from going forward to a full stop.
-  FOR pulseCount = 100 TO 1 ' Loop ramps down for 100 pulses.
+  FOR pulseCount = 50 TO 1 ' Loop ramps down for 100 pulses.
     PULSOUT 13, 750 + pulseCount ' Pulse = 1.5 ms + pulseCount.
     PULSOUT 12, 750 - pulseCount ' Pulse = 1.5 ms - pulseCount.
     PAUSE 20 ' Pause for 20 ms.
@@ -82,7 +82,7 @@ Slow_Down_Forward: ' Slow down the boe-bot forward
   RETURN
 Speed_Up_Forward: ' Speed up the boe-bot forward
   ' Ramp up forward.
-  FOR pulseCount = 1 TO 100 ' Loop ramps up for 100 pulses.
+  FOR pulseCount = 1 TO 50 ' Loop ramps up for 100 pulses.
     PULSOUT 13, 750 + pulseCount ' Pulse = 1.5 ms + pulseCount.
     PULSOUT 12, 750 - pulseCount ' Pulse = 1.5 ms – pulseCount.
     PAUSE 20 ' Pause for 20 ms.
@@ -95,7 +95,7 @@ Slow_Down_Backward: ' Slow down the boe-bot backward
     PULSOUT 12, 750 + pulseCount ' Pulse = 1.5 ms - pulseCount.
     PAUSE 20 ' Pause for 20 ms.
   NEXT
-  return
+  RETURN
 Speed_Up_Backward: ' Speed up the boe-bot backward
   ' Ramp up backward.
   FOR pulseCount = 1 TO 100 ' Loop ramps up for 100 pulses.
