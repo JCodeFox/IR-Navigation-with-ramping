@@ -60,3 +60,35 @@ Back_Up: ' Back up.
     PAUSE 20
   NEXT
   RETURN
+Slow_Down_Forward: ' Slow down the boe-bot forward
+  ' Ramp down from going forward to a full stop.
+  FOR pulseCount = 100 TO 1 ' Loop ramps down for 100 pulses.
+    PULSOUT 13, 750 + pulseCount ' Pulse = 1.5 ms + pulseCount.
+    PULSOUT 12, 750 - pulseCount ' Pulse = 1.5 ms - pulseCount.
+    PAUSE 20 ' Pause for 20 ms.
+  NEXT
+  RETURN
+Speed_Up_Forward: ' Speed up the boe-bot forward
+  ' Ramp up forward.
+  FOR pulseCount = 1 TO 100 ' Loop ramps up for 100 pulses.
+    PULSOUT 13, 750 + pulseCount ' Pulse = 1.5 ms + pulseCount.
+    PULSOUT 12, 750 - pulseCount ' Pulse = 1.5 ms – pulseCount.
+    PAUSE 20 ' Pause for 20 ms.
+  NEXT
+  RETURN
+Slow_Down_Backward: ' Slow down the boe-bot backward
+  ' Ramp down from going backward to a full stop.
+  FOR pulseCount = 100 TO 1 ' Loop ramps down for 100 pulses.
+    PULSOUT 13, 750 - pulseCount ' Pulse = 1.5 ms + pulseCount.
+    PULSOUT 12, 750 + pulseCount ' Pulse = 1.5 ms - pulseCount.
+    PAUSE 20 ' Pause for 20 ms.
+  NEXT
+  return
+Speed_Up_Backward: ' Speed up the boe-bot backward
+  ' Ramp up backward.
+  FOR pulseCount = 1 TO 100 ' Loop ramps up for 100 pulses.
+    PULSOUT 13, 750 - pulseCount ' Pulse = 1.5 ms + pulseCount.
+    PULSOUT 12, 750 + pulseCount ' Pulse = 1.5 ms – pulseCount.
+    PAUSE 20 ' Pause for 20 ms.
+  NEXT
+  RETURN
