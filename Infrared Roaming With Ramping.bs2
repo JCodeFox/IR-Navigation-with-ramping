@@ -19,15 +19,27 @@ DO
   FREQOUT 2, 1, 38500
   irDetectRight = IN0
   IF (irDetectLeft = 0) AND (irDetectRight = 0) THEN
+    GOSUB Slow_Down_Forward ' Slowdown
+    GOSUB Speed_Up_Backward ' Speed up
     GOSUB Back_Up ' Both detect obstacle
+    GOSUB Slow_Down_Backward ' Slowdown
     GOSUB Turn_Left ' Back up & U-turn (left twice)
     GOSUB Turn_Left
+    GOSUB Speed_Up_Forward ' Speed up
   ELSEIF (irDetectLeft = 0) THEN ' Left detects
-    GOSUB Back_Up ' Back up & turn right
+    GOSUB Slow_Down_Forward ' Slowdown
+    GOSUB Speed_Up_Backward ' Speed up
+    GOSUB Back_Up ' Both detect obstacle
+    GOSUB Slow_Down_Backward ' Slowdown
     GOSUB Turn_Right
+    GOSUB Speed_Up_Forward ' Speed up
   ELSEIF (irDetectRight = 0) THEN ' Right detects
-    GOSUB Back_Up ' Back up & turn left
+    GOSUB Slow_Down_Forward ' Slowdown
+    GOSUB Speed_Up_Backward ' Speed up
+    GOSUB Back_Up ' Both detect obstacle
+    GOSUB Slow_Down_Backward ' Slowdown
     GOSUB Turn_Left
+    GOSUB Speed_Up_Forward ' Speed up
   ELSE ' None detect
     GOSUB Forward_Pulse ' Apply a forward pulse
   ENDIF ' and check again
